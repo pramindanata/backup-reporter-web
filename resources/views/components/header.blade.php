@@ -5,7 +5,7 @@
         </button>
 
         <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
-            <a href=".">
+            <a href="{{ route('home') }}">
                 {{ config('app.name') }}
             </a>
         </h1>
