@@ -23,13 +23,17 @@
                          </svg>
                     </span>
                     <div class="d-none d-xl-block ps-2">
-                        <div>Eksa Pramindanata</div>
-                        <div class="mt-1 small text-muted">Admin</div>
+                        <div>{{ $user->name }}</div>
+                        <div class="mt-1 small text-muted">{{ __("domain.user.role.{$user->role}") }}</div>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <a href="#" class="dropdown-item">Settings</a>
-                    <a href="#" class="dropdown-item">Logout</a>
+                    <a href="#" class="dropdown-item">Profile</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                        <button class="dropdown-item">Logout</button>
+                    </form>
                 </div>
             </div>
         </div>

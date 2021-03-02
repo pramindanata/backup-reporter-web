@@ -12,16 +12,14 @@
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 </head>
 
-<body class="antialiased">
-    <div class="page">
-        <x-header />
+<body class="antialiased border-top-wide border-primary d-flex flex-column">
+    <div class="flex-fill d-flex flex-column justify-content-center py-4">
+        <div class="container-tight py-6">
+            <div class="text-center mb-4">
+                <h1>{{ config('app.name') }}</h1>
+            </div>
 
-        <x-navbar />
-
-        <div class="content">
             {{ $slot }}
-
-            <x-footer />
         </div>
     </div>
 
@@ -30,7 +28,6 @@
     <script src="{{ mix('js/app.js') }}"></script>
 
     @stack('scripts')
-</body>
 </body>
 
 </html>

@@ -12,6 +12,12 @@ const mix = require('laravel-mix');
  |
  */
 
+mix.ts('resources/js/pages/login.ts', 'public/js/pages');
+
 mix
   .ts('resources/js/app.ts', 'public/js')
   .sass('resources/css/app.scss', 'public/css');
+
+if (mix.inProduction()) {
+  mix.version();
+}
