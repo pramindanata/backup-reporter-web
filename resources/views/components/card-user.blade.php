@@ -5,7 +5,9 @@
 <div class="card">
     <div class="card-header">
         <div class="d-flex w-100 justify-content-between align-items-center">
-            <div class="card-title">{{ $user->username }}</div>
+            <div class="card-title">
+                <a href="{{ route('users.show', ['user' => $user->id]) }}">{{ $user->username }}</a>
+            </div>
 
             <div class="dropdown">
                 <button class="btn w-100 btn-icon border-0" type="button" id="Action Button"
@@ -19,10 +21,10 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="Action Button">
                     <li>
-                        <a class="dropdown-item" href="{{ route('users.edit', 'user' => $user->id) }}">Edit</a>
+                        <a class="dropdown-item" href="{{ route('users.edit', ['user' => $user->id]) }}">Edit</a>
                     </li>
                     <li>
-                        <a class="dropdown-item text-danger" href="{{ route('users.delete', 'user' => $user->id) }}">Delete</a>
+                        <a class="dropdown-item text-danger" href="{{ route('users.destroy', ['user' => $user->id]) }}">Delete</a>
                     </li>
                 </ul>
             </div>
@@ -38,7 +40,7 @@
                         <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
                     </svg>
                 </div>
-                <div>{{ $user->role }}</div>
+                <div>{{ __("domain.user.role.{$user->role}") }}</div>
             </div>
 
             <div class="col-sm-auto d-flex text-muted">

@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UsersTableSeeder extends Seeder
 {
@@ -14,11 +16,11 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('users')->delete();
+        DB::table('users')->delete();
 
-        \DB::statement('ALTER SEQUENCE users_id_seq RESTART WITH 2');
+        DB::statement('ALTER SEQUENCE users_id_seq RESTART WITH 2');
 
-        \DB::table('users')->insert(array(
+        DB::table('users')->insert(array(
             0 =>
             array(
                 'id' => 1,
@@ -31,5 +33,7 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => '2020-09-26 17:30:39+08',
             ),
         ));
+
+        User::factory()->count(63)->create();
     }
 }
