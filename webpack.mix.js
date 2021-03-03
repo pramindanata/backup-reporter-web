@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
  */
 
 mix.ts('resources/js/pages/login.ts', 'public/js/pages');
+mix.ts('resources/js/pages/user/create.ts', 'public/js/pages/user');
 
 mix
   .ts('resources/js/app.ts', 'public/js')

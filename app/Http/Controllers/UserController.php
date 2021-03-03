@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserStore;
+use App\Service\UserService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    private UserService $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -25,6 +34,7 @@ class UserController extends Controller
     public function create()
     {
         //
+        return view('pages.user.create');
     }
 
     /**
@@ -33,9 +43,17 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserStore $request)
     {
         //
+        $props = $request->all();
+        $user = $this->userService->store($props);
+        $detailRoute = route('users.show', ['user' => $user->id]);
+
+        return redirect($detailRoute)
+            ->with([
+                'success' => __('page.global.success_created_message')
+            ]);
     }
 
     /**
@@ -47,6 +65,7 @@ class UserController extends Controller
     public function show($id)
     {
         //
+        return view('pages.user.show');
     }
 
     /**
