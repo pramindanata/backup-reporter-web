@@ -18,4 +18,11 @@ class UserService
 
         return $user;
     }
+
+    public function getDetail($id): ?User
+    {
+        $user = User::find($id);
+
+        return $user;
+    }
 }

@@ -1,8 +1,8 @@
-<x-layouts.main title="Example">
+<x-layouts.main title="{{ $user->username }}">
     <div class="container-xl">
         <div class="page-header d-print-none">
             <h2 class="page-title">
-                Example
+                {{ $user->username }}
             </h2>
         </div>
 
@@ -10,11 +10,29 @@
 
         <div class="card">
             <div class="card-header">
-                <h2 class="card-title">Example</h2>
+                <h2 class="card-title">Detail</h2>
             </div>
 
             <div class="card-body">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, deleniti laudantium quidem dolore quaerat, quia facilis quod omnis aperiam soluta maiores tempore mollitia, doloremque culpa. Tempore placeat illum quam sed.</p>
+                <x-base.inline-form-group label="ID" class="mb-3">
+                    <div>#{{ $user->id }}</div>
+                </x-base.inline-form-group>
+
+                <x-base.inline-form-group label="Username" class="mb-3">
+                    <div>{{ $user->username }}</div>
+                </x-base.inline-form-group>
+
+                <x-base.inline-form-group label="Name" class="mb-3">
+                    <div>{{ $user->name }}</div>
+                </x-base.inline-form-group>
+
+                <x-base.inline-form-group label="Role" class="mb-3">
+                    <div>{{ __("domain.user.role.{$user->role}") }}</div>
+                </x-base.inline-form-group>
+
+                <x-base.inline-form-group label="Created At">
+                    <div>{{ $user->created_at }}</div>
+                </x-base.inline-form-group>
             </div>
         </div>
     </div>

@@ -65,7 +65,13 @@ class UserController extends Controller
     public function show($id)
     {
         //
-        return view('pages.user.show');
+        $user = $this->userService->getDetail($id);
+
+        if (!$user) {
+            abort(404);
+        }
+
+        return view('pages.user.show', ['user' => $user]);
     }
 
     /**
