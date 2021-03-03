@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserCatalog;
 use App\Http\Requests\UserStore;
 use App\Service\UserService;
 use Illuminate\Http\Request;
@@ -20,13 +21,18 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(UserCatalog $request)
     {
         //
         $users = $this->userService->getCatalogPaginator();
 
         return view('pages.user.index', [
             'users' => $users->withQueryString(),
+            'filter' => [
+                'search' => $request->search ?? '',
+                'order' => $request->order ?? 'created_at',
+                'sort' => $request->sort ?? 'DESC',
+            ]
         ]);
     }
 

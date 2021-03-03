@@ -26,6 +26,10 @@
             </div>
         </div>
 
+        <x-alert-validation-error />
+
+        <x-filter-user class="mb-3" />
+
         <div class="row row-cards mb-3">
             @foreach ($users as $user)
                 <div class="col-md-6 col-xl-4">
@@ -38,4 +42,13 @@
             {{ $users->links() }}
         </div>
     </div>
+
+    @push('scripts')
+        <script>
+            window.pageState = {
+                filter: @json($filter)
+            }
+        </script>
+        <script src="{{ mix('js/pages/user/index.js') }}"></script>
+    @endpush
 </x-layouts.main>
