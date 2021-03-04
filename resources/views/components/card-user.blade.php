@@ -24,7 +24,10 @@
                         <a class="dropdown-item" href="{{ route('users.edit', ['user' => $user->id]) }}">Edit</a>
                     </li>
                     <li>
-                        <a class="dropdown-item text-danger" href="{{ route('users.destroy', ['user' => $user->id]) }}">Delete</a>
+                        <div
+                            class="btn-confirm-delete dropdown-item text-danger cursor-pointer"
+                            data-url="{{ route('api.users.destroy', ['user' => $user->id]) }}"
+                        >Delete</div>
                     </li>
                 </ul>
             </div>

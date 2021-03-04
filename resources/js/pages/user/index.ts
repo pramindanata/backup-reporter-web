@@ -1,3 +1,9 @@
+import {
+  fireDeleteConfirmAlert,
+  fireDeleteSuccessAlert,
+} from '../../lib/alert';
+import { getAxiosErrMessage } from '../../lib/axios';
+
 interface Filter {
   search: string;
   sort: string;
@@ -24,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function fillFilterValues() {
-    console.log(filter);
     searchInputEl.value = filter.search;
     orderInputEl.value = filter.order;
     sortInputEl.value = filter.sort;
@@ -35,4 +40,28 @@ document.addEventListener('DOMContentLoaded', () => {
     orderInputEl.value = 'created_at';
     sortInputEl.value = 'DESC';
   }
+
+  const confirmDeleteBtnElList: NodeListOf<HTMLButtonElement> = document.querySelectorAll(
+    '.btn-confirm-delete',
+  );
+
+  confirmDeleteBtnElList.forEach((btnEl) => {
+    btnEl.addEventListener('click', () => {
+      const url = btnEl.getAttribute('data-url')!;
+
+      fireDeleteConfirmAlert(async () => {
+        try {
+          await axios.request({ method: 'DELETE', url });
+
+          fireDeleteSuccessAlert(() => {
+            location.reload();
+          });
+        } catch (err) {
+          const message = getAxiosErrMessage(err);
+
+          Swal.showValidationMessage(message);
+        }
+      });
+    });
+  });
 });

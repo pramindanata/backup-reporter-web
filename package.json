@@ -31,7 +31,9 @@
     },
     "dependencies": {
         "@types/bootstrap": "^5.0.8",
+        "axios": "^0.21.1",
         "bootstrap": "^5.0.0-beta2",
+        "sweetalert2": "^10.15.5",
         "typescript": "^4.2.2"
     }
 }

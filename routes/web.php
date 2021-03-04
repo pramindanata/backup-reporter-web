@@ -25,5 +25,5 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::post('/logout', LogoutController::class)->name('logout');
     Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::resource('/users', UserController::class);
+    Route::resource('/users', UserController::class)->except(['destroy']);
 });
