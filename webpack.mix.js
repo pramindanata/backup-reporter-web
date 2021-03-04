@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const mix = require('laravel-mix');
+const path = require('path');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,6 +12,9 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+mix.alias({
+  '@': path.join(__dirname, 'resources/js'),
+});
 
 mix.ts('resources/js/pages/login.ts', 'public/js/pages');
 mix

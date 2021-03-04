@@ -1,8 +1,5 @@
-import {
-  fireDeleteConfirmAlert,
-  fireDeleteSuccessAlert,
-} from '../../lib/alert';
-import { getAxiosErrMessage } from '../../lib/axios';
+import { fireDeleteConfirmAlert, fireDeleteSuccessAlert } from '@/lib/alert';
+import { getAxiosErrMessage } from '@/lib/axios';
 
 interface Filter {
   search: string;
