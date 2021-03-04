@@ -5,18 +5,20 @@
             back-tooltip-title="Back to user list"
             page-title="{{ $user->username }}"
         >
-            <x-slot name="actions">
-                <a
-                    href="{{ route('users.edit', ['user' => $user->id]) }}"
-                    class="btn btn-primary"
-                >Edit</a>
+            @canany (['update', 'delete'], $user)
+                <x-slot name="actions">
+                    <a
+                        href="{{ route('users.edit', ['user' => $user->id]) }}"
+                        class="btn btn-primary"
+                    >Edit</a>
 
-                <button
-                    id="btn-confirm-delete"
-                    class="btn btn-danger"
-                    data-url="{{ route('api.users.destroy', ['user' => $user->id]) }}"
-                >Delete</button>
-            </x-slot>
+                    <button
+                        id="btn-confirm-delete"
+                        class="btn btn-danger"
+                        data-url="{{ route('api.users.destroy', ['user' => $user->id]) }}"
+                    >Delete</button>
+                </x-slot>
+            @endcanany
         </x-page-header-with-back-btn>
 
         <x-alert-action-success />

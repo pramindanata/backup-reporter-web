@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserCatalog;
 use App\Http\Requests\UserStore;
 use App\Http\Requests\UserUpdate;
+use App\Models\User;
 use App\Service\UserService;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,8 @@ class UserController extends Controller
     public function index(UserCatalog $request)
     {
         //
+        $this->authorize('viewAny', User::class);
+
         $filter = [
             'search' => $request->search ?? '',
             'order' => $request->order ?? 'created_at',
@@ -46,6 +49,8 @@ class UserController extends Controller
     public function create()
     {
         //
+        $this->authorize('create', User::class);
+
         return view('pages.user.create');
     }
 
@@ -58,6 +63,8 @@ class UserController extends Controller
     public function store(UserStore $request)
     {
         //
+        $this->authorize('create', User::class);
+
         $props = $request->all();
         $user = $this->userService->store($props);
         $detailRoute = route('users.show', ['user' => $user->id]);
@@ -83,6 +90,8 @@ class UserController extends Controller
             abort(404);
         }
 
+        $this->authorize('view', $user);
+
         return view('pages.user.show', ['user' => $user]);
     }
 
@@ -100,6 +109,8 @@ class UserController extends Controller
         if (!$user) {
             abort(404);
         }
+
+        $this->authorize('update', $user);
 
         return view('pages.user.edit', ['user' => $user]);
     }

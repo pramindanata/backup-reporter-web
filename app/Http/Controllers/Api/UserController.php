@@ -24,6 +24,7 @@ class UserController extends Controller
             abort(404);
         }
 
+        $this->authorize('delete', $user);
         $this->userService->delete($user);
 
         return response('ok');
