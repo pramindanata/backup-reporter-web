@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccessTokenController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -32,4 +33,5 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
 
     Route::resource('/users', UserController::class)->except(['destroy']);
+    Route::resource('/access-tokens', AccessTokenController::class)->except(['destroy']);
 });

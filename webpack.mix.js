@@ -23,6 +23,16 @@ mix
   .ts('resources/js/pages/user/show.ts', 'public/js/pages/user');
 
 mix
+  .ts(
+    'resources/js/pages/access-token/index.ts',
+    'public/js/pages/access-token',
+  )
+  .ts(
+    'resources/js/pages/access-token/show.ts',
+    'public/js/pages/access-token',
+  );
+
+mix
   .ts('resources/js/app.ts', 'public/js')
   .sass('resources/css/app.scss', 'public/css');
 
