@@ -19,6 +19,10 @@
                     @csrf
                     @method('put')
 
+                    <x-base.inline-form-group label="ID" class="mb-3">
+                        <div>#{{ $user->id }}</div>
+                    </x-base.inline-form-group>
+
                     <x-base.inline-form-group
                         for="name"
                         label="Name"
@@ -29,7 +33,8 @@
                             id="input-name"
                             type="text"
                             name="name"
-                            required class="form-control"
+                            required
+                            class="form-control"
                             value="{{ old('name') ?: $user->name }}"
                         />
                     </x-base.inline-form-group>
@@ -44,7 +49,8 @@
                             id="input-username"
                             type="text"
                             name="username"
-                            required class="form-control"
+                            required
+                            class="form-control"
                             value="{{ old('username') ?: $user->username }}"
                         />
                     </x-base.inline-form-group>

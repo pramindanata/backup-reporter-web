@@ -4,9 +4,10 @@ namespace App\Http\Requests;
 
 use App\Enums\TableName;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
-class UserUpdate extends FormRequest
+class ProfileUpdateInfo extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,16 +26,16 @@ class UserUpdate extends FormRequest
      */
     public function rules()
     {
-        $userId = $this->route('user');
+        $user = Auth::user();
 
         return [
-            'name' => 'string|required',
+            //
+            'name' => 'required|string',
             'username' => [
-                'alpha_dash',
                 'required',
-                Rule::unique(TableName::User, 'username')->ignore($userId)
-            ],
-            'password' => 'nullable|string|min:8',
+                'alpha_dash',
+                Rule::unique(TableName::User, 'username')->ignore($user->id)
+            ]
         ];
     }
 }

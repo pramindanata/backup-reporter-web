@@ -27,7 +27,8 @@
                             id="input-name"
                             type="text"
                             name="name"
-                            required class="form-control"
+                            required
+                            class="form-control"
                             value="{{ old('name') }}"
                         />
                     </x-base.inline-form-group>
@@ -42,7 +43,8 @@
                             id="input-username"
                             type="text"
                             name="username"
-                            required class="form-control"
+                            required
+                            class="form-control"
                             value="{{ old('username') }}"
                         />
                     </x-base.inline-form-group>
@@ -60,7 +62,8 @@
                                 id="input-password"
                                 type="password"
                                 name="password"
-                                required class="form-control"
+                                required
+                                class="form-control"
                             />
 
                             <span class="input-group-text">
