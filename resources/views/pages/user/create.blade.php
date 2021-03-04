@@ -1,10 +1,10 @@
 <x-layouts.main title="Create User">
     <div class="container-xl">
-        <div class="page-header d-print-none">
-            <h2 class="page-title">
-                Create User
-            </h2>
-        </div>
+        <x-page-header-with-back-btn
+            back-route="{{ route('users.index') }}"
+            back-tooltip-title="Back to user list"
+            page-title="Create User"
+        />
 
         <x-alert-validation-error />
 

@@ -1,10 +1,10 @@
 <x-layouts.main title="Edit {{ $user->username }}">
     <div class="container-xl">
-        <div class="page-header d-print-none">
-            <h2 class="page-title">
-                Edit {{ $user->username }}
-            </h2>
-        </div>
+        <x-page-header-with-back-btn
+            back-route="{{ route('users.show', ['user' => $user->id]) }}"
+            back-tooltip-title="Back to user detail"
+            page-title="{{ 'Edit ' . $user->username }}"
+        />
 
         <x-alert-validation-error />
         <x-alert-action-success class="w-100" />

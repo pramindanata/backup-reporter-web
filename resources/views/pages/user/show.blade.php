@@ -1,10 +1,10 @@
 <x-layouts.main title="{{ $user->username }}">
     <div class="container-xl">
-        <div class="page-header d-print-none">
-            <h2 class="page-title">
-                {{ $user->username }}
-            </h2>
-        </div>
+        <x-page-header-with-back-btn
+            back-route="{{ route('users.index') }}"
+            back-tooltip-title="Back to user list"
+            page-title="{{ $user->username }}"
+        />
 
         <x-alert-action-success class="w-100" />
 
