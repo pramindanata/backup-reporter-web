@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserCatalog;
 use App\Http\Requests\UserStore;
+use App\Http\Requests\UserUpdate;
 use App\Service\UserService;
 use Illuminate\Http\Request;
 
@@ -94,6 +95,13 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+        $user = $this->userService->getDetail($id);
+
+        if (!$user) {
+            abort(404);
+        }
+
+        return view('pages.user.edit', ['user' => $user]);
     }
 
     /**
@@ -103,9 +111,22 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdate $request, $id)
     {
         //
+        $user = $this->userService->getDetail($id);
+
+        if (!$user) {
+            abort(404);
+        }
+
+        $this->userService->update($user, $request->all());
+
+        return redirect()
+            ->back()
+            ->with([
+                'success' => __('page.global.success_updated_message')
+            ]);
     }
 
     /**

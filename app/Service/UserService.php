@@ -43,4 +43,18 @@ class UserService
 
         return $user;
     }
+
+    public function update(User $user, array $props): User
+    {
+        $user->name = $props['name'];
+        $user->username = $props['username'];
+
+        if ($props['password']) {
+            $user->password = Hash::make($props['password']);
+        }
+
+        $user->save();
+
+        return $user;
+    }
 }

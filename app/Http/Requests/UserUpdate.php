@@ -6,7 +6,7 @@ use App\Enums\TableName;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UserStore extends FormRequest
+class UserUpdate extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,14 +25,16 @@ class UserStore extends FormRequest
      */
     public function rules()
     {
+        $userId = $this->route('user');
+
         return [
             'name' => 'string|required',
             'username' => [
             'alpha_dash',
                 'required',
-                Rule::unique(TableName::User, 'username')
+                Rule::unique(TableName::User, 'username')->ignore($userId)
             ],
-            'password' => 'required|string|min:8',
+            'password' => 'nullable|string|min:8',
         ];
     }
 }
