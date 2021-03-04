@@ -31,7 +31,9 @@
                 </x-base.inline-form-group>
 
                 <x-base.inline-form-group label="Created At">
-                    <div>{{ $user->created_at }}</div>
+                    <div data-bs-toggle="tooltip" title="{{ $user->created_at }}">
+                        {{ $user->created_at->diffForHumans() }}
+                    </div>
                 </x-base.inline-form-group>
             </div>
         </div>
