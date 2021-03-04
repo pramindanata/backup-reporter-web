@@ -9,7 +9,7 @@ export function fireDeleteConfirmAlert(preConfirm: () => any): void {
 export function fireDeleteSuccessAlert(willClose: () => any): void {
   Swal.fire({
     title: 'Success',
-    text: 'Data successfully removed.',
+    text: 'Data has been deleted.',
     icon: 'success',
     confirmButtonText: 'OK',
     willClose,

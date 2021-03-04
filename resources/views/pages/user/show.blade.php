@@ -4,9 +4,26 @@
             back-route="{{ route('users.index') }}"
             back-tooltip-title="Back to user list"
             page-title="{{ $user->username }}"
-        />
+        >
+            <x-slot name="actions">
+                <a
+                    href="{{ route('users.edit', ['user' => $user->id]) }}"
+                    class="btn btn-primary"
+                >Edit</a>
 
-        <x-alert-action-success class="w-100" />
+                <button
+                    id="btn-confirm-delete"
+                    class="btn btn-danger"
+                    data-url="{{ route('api.users.destroy', ['user' => $user->id]) }}"
+                >Delete</button>
+            </x-slot>
+        </x-page-header-with-back-btn>
+
+        <x-alert-action-success />
+
+        <x-base.alert-warning id="alert-deleted" class="d-none">
+            Data has been deleted.
+        </x-base.alert-warning>
 
         <div class="card">
             <div class="card-header">
@@ -38,4 +55,8 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+        <script src="{{ mix('js/pages/user/show.js') }}"></script>
+    @endpush
 </x-layouts.main>

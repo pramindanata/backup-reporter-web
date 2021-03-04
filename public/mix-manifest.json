@@ -2,6 +2,7 @@
     "/js/pages/login.js": "/js/pages/login.js",
     "/js/pages/user/index.js": "/js/pages/user/index.js",
     "/js/pages/user/create.js": "/js/pages/user/create.js",
+    "/js/pages/user/show.js": "/js/pages/user/show.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css"
 }

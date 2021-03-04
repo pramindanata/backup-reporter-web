@@ -23,10 +23,16 @@
             </a>
         </div>
 
-        <div class="col-auto">
+        <div class="col">
             <h2 class="page-title">
                 {{ $pageTitle }}
             </h2>
         </div>
+
+        @isset($actions)
+            <div class="col-auto">
+                {{ $actions }}
+            </div>
+        @endisset
     </div>
 </div>
