@@ -24,15 +24,16 @@ class UserController extends Controller
     public function index(UserCatalog $request)
     {
         //
-        $users = $this->userService->getCatalogPaginator();
+        $filter = [
+            'search' => $request->search ?? '',
+            'order' => $request->order ?? 'created_at',
+            'sort' => $request->sort ?? 'DESC',
+        ];
+        $users = $this->userService->getCatalogPaginator($filter);
 
         return view('pages.user.index', [
             'users' => $users->withQueryString(),
-            'filter' => [
-                'search' => $request->search ?? '',
-                'order' => $request->order ?? 'created_at',
-                'sort' => $request->sort ?? 'DESC',
-            ]
+            'filter' => $filter
         ]);
     }
 
