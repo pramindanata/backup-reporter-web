@@ -46,7 +46,7 @@
                 </x-base.inline-form-group>
 
                 <x-base.inline-form-group label="Role" class="mb-3">
-                    <div>{{ __("domain.user.role.{$user->role}") }}</div>
+                    <div class="{{ $roleTextColor }}">{{ __("domain.user.role.{$user->role}") }}</div>
                 </x-base.inline-form-group>
 
                 <x-base.inline-form-group label="Created At">

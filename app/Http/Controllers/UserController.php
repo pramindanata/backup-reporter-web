@@ -92,7 +92,10 @@ class UserController extends Controller
 
         $this->authorize('view', $user);
 
-        return view('pages.user.show', ['user' => $user]);
+        return view('pages.user.show', [
+            'user' => $user,
+            'roleTextColor' => $user->isAdmin() ? 'text-purple' : 'text-warning',
+        ]);
     }
 
     /**
