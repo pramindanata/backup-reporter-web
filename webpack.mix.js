@@ -32,9 +32,12 @@ mix
     'public/js/pages/access-token',
   );
 
+const sourceMapIsGeneratedForProduction = false;
+
 mix
   .ts('resources/js/app.ts', 'public/js')
-  .sass('resources/css/app.scss', 'public/css');
+  .sass('resources/css/app.scss', 'public/css')
+  .sourceMaps(sourceMapIsGeneratedForProduction);
 
 if (mix.inProduction()) {
   mix.version();
