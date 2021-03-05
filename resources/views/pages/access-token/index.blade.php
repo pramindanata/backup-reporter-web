@@ -32,13 +32,13 @@
 
         <x-alert-validation-error />
 
-        <x-filter-access-token class="mb-3" />
+        <x-access-token-filter class="mb-3" />
 
         @if ($accessTokens->count() > 0)
             <div class="row row-cards mb-3">
                 @foreach ($accessTokens as $accessToken)
                     <div class="col-md-6 col-xl-4">
-                        <x-card-access-token :access-token="$accessToken" />
+                        <x-access-token-card :access-token="$accessToken" />
                     </div>
                 @endforeach
             </div>

@@ -5,7 +5,7 @@ namespace App\View\Components;
 use App\Models\AccessToken;
 use Illuminate\View\Component;
 
-class CardAccessToken extends Component
+class AccessTokenCard extends Component
 {
     public AccessToken $accessToken;
 
@@ -21,7 +21,7 @@ class CardAccessToken extends Component
 
     public function render()
     {
-        return view('components.card-access-token');
+        return view('components.access-token-card');
     }
 
     public function getActivationStatusTextColorClass()

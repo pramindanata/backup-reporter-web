@@ -30,13 +30,13 @@
 
         <x-alert-validation-error />
 
-        <x-filter-user class="mb-3" />
+        <x-user-filter class="mb-3" />
 
         @if ($users->count() > 0)
             <div class="row row-cards mb-3">
                 @foreach ($users as $user)
                     <div class="col-md-6 col-xl-4">
-                        <x-card-user :user="$user" />
+                        <x-user-card :user="$user" />
                     </div>
                 @endforeach
             </div>

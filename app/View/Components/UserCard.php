@@ -5,7 +5,7 @@ namespace App\View\Components;
 use App\Models\User;
 use Illuminate\View\Component;
 
-class CardUser extends Component
+class UserCard extends Component
 {
     public User $user;
 
@@ -21,7 +21,7 @@ class CardUser extends Component
 
     public function render()
     {
-        return view('components.card-user');
+        return view('components.user-card');
     }
 
     public function getRoleTextColorClass()
