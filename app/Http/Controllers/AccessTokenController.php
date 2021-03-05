@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AccessTokenCatalog;
 use App\Http\Requests\AccessTokenStore;
+use App\Http\Requests\AccessTokenUpdate;
 use App\Service\AccessTokenService;
 use Illuminate\Http\Request;
 
@@ -99,6 +100,15 @@ class AccessTokenController extends Controller
     public function edit($id)
     {
         //
+        $accessToken = $this->accessTokenService->getDetail($id);
+
+        if (!$accessToken) {
+            abort(404);
+        }
+
+        return view('pages.access-token.edit', [
+            'accessToken' => $accessToken,
+        ]);
     }
 
     /**
@@ -108,9 +118,22 @@ class AccessTokenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AccessTokenUpdate $request, $id)
     {
         //
+        $accessToken = $this->accessTokenService->getDetail($id);
+
+        if (!$accessToken) {
+            abort(404);
+        }
+
+        $this->accessTokenService->update($accessToken, $request->all());
+
+        return redirect()
+            ->back()
+            ->with([
+                'success' => __('page.global.success_updated_message')
+            ]);
     }
 
     /**

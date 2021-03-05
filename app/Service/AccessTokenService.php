@@ -43,4 +43,17 @@ class AccessTokenService
 
         return $accessToken;
     }
+
+    public function update(AccessToken $accessToken, array $props): AccessToken
+    {
+        $accessToken->name = $props['name'];
+        $accessToken->save();
+
+        return $accessToken;
+    }
+
+    public function delete(AccessToken $accessToken): ?bool
+    {
+        return $accessToken->delete();
+    }
 }

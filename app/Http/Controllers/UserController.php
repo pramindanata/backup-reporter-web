@@ -134,6 +134,7 @@ class UserController extends Controller
             abort(404);
         }
 
+        $this->authorize('update', $user);
         $this->userService->update($user, $request->all());
 
         return redirect()
