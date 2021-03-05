@@ -15,4 +15,19 @@ class AccessTokenController extends Controller
     {
         $this->accessTokenService = $accessTokenService;
     }
+
+    //
+    public function destroy($id)
+    {
+        $accessToken = $this->accessTokenService->getDetail($id);
+
+        if (!$accessToken) {
+            abort(404);
+        }
+
+        $this->authorize('delete', $accessToken);
+        $this->accessTokenService->delete($accessToken);
+
+        return response('ok');
+    }
 }
