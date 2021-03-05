@@ -64,7 +64,7 @@
                         <line x1="15" y1="8" x2="17" y2="10"></line>
                     </svg>
                 </div>
-                <div>{{ $accessToken->short_value . '****' }}</div>
+                <div>{{ $accessToken->getRedactedValue() }}</div>
             </div>
 
             <div class="col-xl-6 col-md-auto d-flex text-muted">

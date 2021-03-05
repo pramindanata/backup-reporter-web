@@ -33,4 +33,9 @@ class AccessToken extends Model
     {
         return $this->activation_status === AccessTokenActivationStatus::Activated;
     }
+
+    public function getRedactedValue()
+    {
+        return "{$this->short_value}****";
+    }
 }

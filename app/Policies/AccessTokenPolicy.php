@@ -10,11 +10,6 @@ class AccessTokenPolicy
 {
     use HandlesAuthorization;
 
-    public function before(User $user)
-    {
-        return $user->isAdmin();
-    }
-
     /**
      * Determine whether the user can view any models.
      *
@@ -24,6 +19,13 @@ class AccessTokenPolicy
     public function viewAny(User $user)
     {
         //
+        return true;
+    }
+
+    public function viewValue(User $user, AccessToken $accessToken)
+    {
+        //
+        return $user->isAdmin();
     }
 
     /**
@@ -36,6 +38,7 @@ class AccessTokenPolicy
     public function view(User $user, AccessToken $accessToken)
     {
         //
+        return true;
     }
 
     /**
@@ -47,6 +50,7 @@ class AccessTokenPolicy
     public function create(User $user)
     {
         //
+        return $user->isAdmin();
     }
 
     /**
@@ -59,6 +63,7 @@ class AccessTokenPolicy
     public function update(User $user, AccessToken $accessToken)
     {
         //
+        return $user->isAdmin();
     }
 
     /**
@@ -71,29 +76,6 @@ class AccessTokenPolicy
     public function delete(User $user, AccessToken $accessToken)
     {
         //
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\AccessToken  $accessToken
-     * @return mixed
-     */
-    public function restore(User $user, AccessToken $accessToken)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\AccessToken  $accessToken
-     * @return mixed
-     */
-    public function forceDelete(User $user, AccessToken $accessToken)
-    {
-        //
+        return $user->isAdmin();
     }
 }

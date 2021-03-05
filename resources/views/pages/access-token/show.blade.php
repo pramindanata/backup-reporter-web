@@ -5,7 +5,7 @@
             back-tooltip-title="Back to access token list"
             page-title="{{ $accessToken->name }}"
         >
-            {{-- @canany (['update', 'delete'], $accessToken) --}}
+            @canany (['update', 'delete'], $accessToken)
                 <x-slot name="actions">
                     <a
                         href="{{ route('access-tokens.edit', ['access_token' => $accessToken->id]) }}"
@@ -18,7 +18,7 @@
                         data-url="{{ route('api.access-tokens.destroy', ['access_token' => $accessToken->id]) }}"
                     >Delete</button>
                 </x-slot>
-            {{-- @endcanany --}}
+            @endcanany
         </x-page-header-with-back-btn>
 
         <x-alert-action-success />
@@ -42,18 +42,22 @@
                 </x-base.inline-form-group>
 
                 <x-base.inline-form-group label="Value" class="mb-3">
-                    <div
-                        id="btn-copy-token"
-                        class="text-break bg-blue-lt px-3 py-2 rounded cursor-pointer"
-                        data-value="{{ $accessToken->value }}"
-                    >
-                        {{ $accessToken->value }}
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
-                            <rect x="9" y="3" width="6" height="4" rx="2"></rect>
-                        </svg>
-                    </div>
+                    @can('viewValue', $accessToken)
+                        <div
+                            id="btn-copy-token"
+                            class="text-break bg-blue-lt px-3 py-2 rounded cursor-pointer"
+                            data-value="{{ $accessToken->value }}"
+                        >
+                            {{ $accessToken->value }}
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
+                                <rect x="9" y="3" width="6" height="4" rx="2"></rect>
+                            </svg>
+                        </div>
+                    @else
+                        <div>{{ $accessToken->getRedactedValue() }}</div>
+                    @endcan
                 </x-base.inline-form-group>
 
                 <x-base.inline-form-group label="Activation Status" class="mb-3">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AccessTokenCatalog;
 use App\Http\Requests\AccessTokenStore;
 use App\Http\Requests\AccessTokenUpdate;
+use App\Models\AccessToken;
 use App\Service\AccessTokenService;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,7 @@ class AccessTokenController extends Controller
     public function index(AccessTokenCatalog $request)
     {
         //
-        $this->authorize('viewAny', User::class);
+        $this->authorize('viewAny', AccessToken::class);
 
         $filter = [
             'search' => $request->search ?? '',
@@ -48,6 +49,8 @@ class AccessTokenController extends Controller
     public function create()
     {
         //
+        $this->authorize('create', AccessToken::class);
+
         return view('pages.access-token.create');
     }
 
@@ -60,6 +63,8 @@ class AccessTokenController extends Controller
     public function store(AccessTokenStore $request)
     {
         //
+        $this->authorize('create', AccessToken::class);
+
         $props = $request->all();
         $accessToken = $this->accessTokenService->store($props);
         $detailRoute = route('access-tokens.show', ['access_token' => $accessToken->id]);
@@ -85,6 +90,8 @@ class AccessTokenController extends Controller
             abort(404);
         }
 
+        $this->authorize('view', $accessToken);
+
         return view('pages.access-token.show', [
             'accessToken' => $accessToken,
             'activationStatusTextColor' => $accessToken->isActivated() ? 'text-success' : 'text-danger',
@@ -106,6 +113,8 @@ class AccessTokenController extends Controller
             abort(404);
         }
 
+        $this->authorize('update', $accessToken);
+
         return view('pages.access-token.edit', [
             'accessToken' => $accessToken,
         ]);
@@ -126,6 +135,8 @@ class AccessTokenController extends Controller
         if (!$accessToken) {
             abort(404);
         }
+
+        $this->authorize('update', $accessToken);
 
         $this->accessTokenService->update($accessToken, $request->all());
 
