@@ -29,6 +29,7 @@ class AccessTokenFactory extends Factory
             'value' => $accessToken,
             'short_value' => substr($accessToken, 0, AccessToken::SHORT_TOKEN_LENGTH),
             'activation_status' => AccessTokenActivationStatus::NotActivated,
+            'telegram_account_id' => null,
         ];
     }
 }

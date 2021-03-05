@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\AccessTokenActivationStatus;
+use App\Enums\TableName;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +15,7 @@ class CreateAccessTokensTable extends Migration
      */
     public function up()
     {
-        Schema::create('access_tokens', function (Blueprint $table) {
+        Schema::create(TableName::AccessToken, function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
             $table->string('value')->unique();
@@ -22,6 +23,10 @@ class CreateAccessTokensTable extends Migration
             $table->enum('activation_status', [
                 AccessTokenActivationStatus::Activated, AccessTokenActivationStatus::NotActivated
             ]);
+            $table->foreignId('telegram_account_id')
+                ->nullable()
+                ->constrained()
+                ->onDelete('cascade');
             $table->timestampTz('created_at')->nullable()->useCurrent();
             $table->timestampTz('updated_at')->nullable()->useCurrent();
         });
@@ -34,6 +39,6 @@ class CreateAccessTokensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('access_tokens');
+        Schema::dropIfExists(TableName::AccessToken);
     }
 }

@@ -19,6 +19,7 @@ class AccessToken extends Model
         'value',
         'short_value',
         'activation_status',
+        'telegram_account_id',
     ];
 
     public static function generateToken(): string
