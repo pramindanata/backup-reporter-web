@@ -16,9 +16,9 @@ class CreateAccessTokensTable extends Migration
     {
         Schema::create('access_tokens', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('access_token')->unique();
-            $table->string('short_access_token');
+            $table->string('name')->unique();
+            $table->string('value')->unique();
+            $table->string('short_value');
             $table->enum('activation_status', [
                 AccessTokenActivationStatus::Activated, AccessTokenActivationStatus::NotActivated
             ]);

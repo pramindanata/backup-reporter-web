@@ -25,9 +25,9 @@ class AccessTokenFactory extends Factory
         $accessToken = AccessToken::generateToken();
 
         return [
-            'name' => $this->faker->name,
-            'access_token' => $accessToken,
-            'short_access_token' => substr($accessToken, 0, AccessToken::SHORT_TOKEN_LENGTH),
+            'name' => $this->faker->unique()->name,
+            'value' => $accessToken,
+            'short_value' => substr($accessToken, 0, AccessToken::SHORT_TOKEN_LENGTH),
             'activation_status' => AccessTokenActivationStatus::NotActivated,
         ];
     }

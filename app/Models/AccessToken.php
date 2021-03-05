@@ -16,8 +16,8 @@ class AccessToken extends Model
 
     protected $fillable = [
         'name',
-        'access_token',
-        'short_access_token',
+        'value',
+        'short_value',
         'activation_status',
     ];
 
@@ -31,6 +31,6 @@ class AccessToken extends Model
 
     public function isActivated()
     {
-        return $this->access_token === AccessTokenActivationStatus::Activated;
+        return $this->activation_status === AccessTokenActivationStatus::Activated;
     }
 }

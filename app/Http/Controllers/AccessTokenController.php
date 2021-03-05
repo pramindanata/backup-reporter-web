@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AccessTokenCatalog;
+use App\Http\Requests\AccessTokenStore;
 use App\Service\AccessTokenService;
 use Illuminate\Http\Request;
 
@@ -46,6 +47,7 @@ class AccessTokenController extends Controller
     public function create()
     {
         //
+        return view('pages.access-token.create');
     }
 
     /**
@@ -54,9 +56,17 @@ class AccessTokenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AccessTokenStore $request)
     {
         //
+        $props = $request->all();
+        $accessToken = $this->accessTokenService->store($props);
+        $detailRoute = route('access-tokens.show', ['access_token' => $accessToken->id]);
+
+        return redirect($detailRoute)
+            ->with([
+                'success' => __('page.global.success_created_message')
+            ]);
     }
 
     /**
