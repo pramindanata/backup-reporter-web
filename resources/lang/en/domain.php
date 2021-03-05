@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\AccessTokenActivationStatus;
 use App\Enums\UserRole;
 
 return [
@@ -9,4 +10,10 @@ return [
             UserRole::Viewer => 'Viewer',
         ]
     ],
+    'accessToken' => [
+        'activationStatus' => [
+            AccessTokenActivationStatus::Activated => 'Activated',
+            AccessTokenActivationStatus::NotActivated => 'Not Activated'
+        ]
+    ]
 ];

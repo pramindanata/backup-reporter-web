@@ -17,5 +17,5 @@ use Illuminate\Support\Facades\Route;
 */
 Route::name('api.')->middleware(['auth'])->group(function () {
     Route::delete("/users/{user}", [UserController::class, 'destroy'])->name("users.destroy");
-    Route::delete("/access-tokens/{access-token}", [AccessTokenController::class, 'destroy'])->name("access-tokens.destroy");
+    Route::delete("/access-tokens/{access_token}", [AccessTokenController::class, 'destroy'])->name("access-tokens.destroy");
 });

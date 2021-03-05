@@ -48,7 +48,7 @@
                 <div>{{ __("domain.user.role.{$user->role}") }}</div>
             </div>
 
-            <div class="col-sm-auto d-flex text-muted" data-bs-toggle="tooltip" title="{{ $user->created_at }}">
+            <div class="col-sm-auto d-flex text-muted">
                 <div class="me-1">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -56,7 +56,7 @@
                         <polyline points="12 7 12 12 15 15"></polyline>
                     </svg>
                 </div>
-                <div>
+                <div data-bs-toggle="tooltip" title="{{ $user->created_at }}">
                     {{ $user->created_at->diffForHumans() }}
                 </div>
             </div>

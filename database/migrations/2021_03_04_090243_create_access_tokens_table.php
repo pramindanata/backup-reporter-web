@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\AccessTokenActivationStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +16,14 @@ class CreateAccessTokensTable extends Migration
     {
         Schema::create('access_tokens', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name');
+            $table->string('access_token')->unique();
+            $table->string('short_access_token');
+            $table->enum('activation_status', [
+                AccessTokenActivationStatus::Activated, AccessTokenActivationStatus::NotActivated
+            ]);
+            $table->timestampTz('created_at')->nullable()->useCurrent();
+            $table->timestampTz('updated_at')->nullable()->useCurrent();
         });
     }
 

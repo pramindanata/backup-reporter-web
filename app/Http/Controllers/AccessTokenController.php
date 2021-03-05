@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AccessTokenCatalog;
 use App\Service\AccessTokenService;
 use Illuminate\Http\Request;
 
@@ -19,9 +20,22 @@ class AccessTokenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(AccessTokenCatalog $request)
     {
         //
+        $this->authorize('viewAny', User::class);
+
+        $filter = [
+            'search' => $request->search ?? '',
+            'order' => $request->order ?? 'created_at',
+            'sort' => $request->sort ?? 'DESC',
+        ];
+        $users = $this->accessTokenService->getCatalogPaginator($filter);
+
+        return view('pages.access-token.index', [
+            'accessTokens' => $users->withQueryString(),
+            'filter' => $filter
+        ]);
     }
 
     /**

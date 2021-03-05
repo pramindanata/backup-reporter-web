@@ -6,10 +6,10 @@ use BenSampo\Enum\Enum;
 
 /**
  * @method static static User()
- * @method static static OptionTwo()
- * @method static static OptionThree()
+ * @method static static AccessToken()
  */
 final class TableName extends Enum
 {
     const User = 'users';
+    const AccessToken = 'access_tokens';
 }
