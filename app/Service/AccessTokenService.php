@@ -36,4 +36,11 @@ class AccessTokenService
 
         return $accessToken;
     }
+
+    public function getDetail($id): ?AccessToken
+    {
+        $accessToken = AccessToken::find($id);
+
+        return $accessToken;
+    }
 }

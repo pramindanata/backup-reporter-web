@@ -1,10 +1,10 @@
 <x-layouts.main title="Create Access Token">
     <div class="container-xl">
-        <div class="page-header d-print-none">
-            <h2 class="page-title">
-                Create Access Token
-            </h2>
-        </div>
+        <x-page-header-with-back-btn
+            back-route="{{ route('access-tokens.index') }}"
+            back-tooltip-title="Back to access token list"
+            page-title="Create Access Token"
+        />
 
         <x-alert-validation-error />
 

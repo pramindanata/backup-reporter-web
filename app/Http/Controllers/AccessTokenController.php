@@ -78,6 +78,16 @@ class AccessTokenController extends Controller
     public function show($id)
     {
         //
+        $accessToken = $this->accessTokenService->getDetail($id);
+
+        if (!$accessToken) {
+            abort(404);
+        }
+
+        return view('pages.access-token.show', [
+            'accessToken' => $accessToken,
+            'activationStatusTextColor' => $accessToken->isActivated() ? 'text-success' : 'text-danger',
+        ]);
     }
 
     /**
