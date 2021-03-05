@@ -32,13 +32,17 @@
 
         <x-filter-user class="mb-3" />
 
-        <div class="row row-cards mb-3">
-            @foreach ($users as $user)
-                <div class="col-md-6 col-xl-4">
-                    <x-card-user :user="$user" />
-                </div>
-            @endforeach
-        </div>
+        @if ($users->count() > 0)
+            <div class="row row-cards mb-3">
+                @foreach ($users as $user)
+                    <div class="col-md-6 col-xl-4">
+                        <x-card-user :user="$user" />
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <x-empty-catalog-result />
+        @endif
 
         <div class="d-flex justify-content-center">
             {{ $users->links() }}
