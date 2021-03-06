@@ -39,7 +39,9 @@ class AccessTokenService
 
     public function getDetail($id): ?AccessToken
     {
-        $accessToken = AccessToken::find($id);
+        $accessToken = AccessToken::where('id', $id)
+            ->with(['telegramAccount'])
+            ->first();
 
         return $accessToken;
     }

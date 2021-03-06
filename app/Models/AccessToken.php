@@ -39,4 +39,9 @@ class AccessToken extends Model
     {
         return "{$this->short_value}****";
     }
+
+    public function telegramAccount()
+    {
+        return $this->belongsTo(TelegramAccount::class);
+    }
 }

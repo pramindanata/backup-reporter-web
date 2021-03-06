@@ -73,6 +73,32 @@
                 </x-base.inline-form-group>
             </div>
         </div>
+
+        @if ($accessToken->telegramAccount)
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h2 class="card-title">Telegram Account Detail</h2>
+                </div>
+
+                <div class="card-body">
+                    <x-base.inline-form-group label="ID" class="mb-3">
+                        <div>#{{ $accessToken->telegramAccount->id }}</div>
+                    </x-base.inline-form-group>
+
+                    <x-base.inline-form-group label="Account ID" class="mb-3">
+                        <div>#{{ $accessToken->telegramAccount->account_id }}</div>
+                    </x-base.inline-form-group>
+
+                    <x-base.inline-form-group label="Username" class="mb-3">
+                        <div>{{ $accessToken->telegramAccount->username ?? '-' }}</div>
+                    </x-base.inline-form-group>
+
+                    <x-base.inline-form-group label="First Name">
+                        <div>{{ $accessToken->telegramAccount->first_name }}</div>
+                    </x-base.inline-form-group>
+                </div>
+            </div>
+        @endif
     </div>
 
     @push('scripts')
