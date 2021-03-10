@@ -3,8 +3,11 @@ namespace App\Service;
 
 use App\Enums\AccessTokenActivationStatus;
 use App\Models\AccessToken;
+use App\Models\TelegramAccount;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
 
 class AccessTokenService
 {
@@ -54,8 +57,20 @@ class AccessTokenService
         return $accessToken;
     }
 
-    public function delete(AccessToken $accessToken): ?bool
+    public function delete(AccessToken $accessToken): void
     {
-        return $accessToken->delete();
+        DB::beginTransaction();
+
+        try {
+            $accessToken->delete();
+            TelegramAccount::where('id', $accessToken->telegramAccount->id)
+                ->delete();
+
+            DB::commit();
+        } catch (Exception $err) {
+            DB::rollBack();
+
+            throw $err;
+        }
     }
 }
