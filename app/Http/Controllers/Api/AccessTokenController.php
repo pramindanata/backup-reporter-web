@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\AccessTokenDeleted;
 use App\Http\Controllers\Controller;
 use App\Service\AccessTokenService;
 use Illuminate\Http\Request;
@@ -27,6 +28,8 @@ class AccessTokenController extends Controller
 
         $this->authorize('delete', $accessToken);
         $this->accessTokenService->delete($accessToken);
+
+        AccessTokenDeleted::dispatch($accessToken);
 
         return response('ok');
     }
