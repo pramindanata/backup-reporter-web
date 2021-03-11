@@ -30,7 +30,7 @@ class BackupReportLogCatalog extends FormRequest
             'order' => [
                 'string',
                 'nullable',
-                Rule::in(['project_name', 'db_name', 'created_at'])
+                Rule::in(['project_name', 'db_name', 'created_at', 'ip'])
             ],
             'sort' => [
                 'string',

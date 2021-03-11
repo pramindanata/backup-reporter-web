@@ -5,6 +5,8 @@
     "/js/pages/user/show.js": "/js/pages/user/show.js",
     "/js/pages/access-token/index.js": "/js/pages/access-token/index.js",
     "/js/pages/access-token/show.js": "/js/pages/access-token/show.js",
+    "/js/pages/backup-report-log/index.js": "/js/pages/backup-report-log/index.js",
+    "/js/pages/backup-report-log/show.js": "/js/pages/backup-report-log/show.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css"
 }

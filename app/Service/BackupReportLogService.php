@@ -10,8 +10,9 @@ class BackupReportLogService
     public function getCatalogPaginator(array $filter): LengthAwarePaginator
     {
         $order = $filter['order'];
+        $jsonFields = ['project_name', 'db_name', 'ip'];
 
-        if (in_array($order, ['project_name', 'db_name'])) {
+        if (in_array($order, $jsonFields)) {
             $order = "detail->{$order}";
         }
 
@@ -19,6 +20,7 @@ class BackupReportLogService
                 'id',
                 'detail->project_name as project_name',
                 'detail->db_name as db_name',
+                'detail->ip as ip',
                 'status',
                 'created_at',
             ])
@@ -28,6 +30,7 @@ class BackupReportLogService
                 return $builder->where('id', 'ilike', "{$search}%")
                     ->orWhere('detail->project_name', 'ilike', "{$search}%")
                     ->orWhere('detail->db_name', 'ilike', "{$search}%")
+                    ->orWhere('detail->ip', 'ilike', "{$search}%")
                     ->orWhere('status', 'ilike', "{$search}%")
                     ->orWhere('created_at', 'ilike', "{$search}%");
             })
