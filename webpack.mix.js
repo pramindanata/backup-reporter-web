@@ -32,6 +32,16 @@ mix
     'public/js/pages/access-token',
   );
 
+mix
+  .ts(
+    'resources/js/pages/backup-report-log/index.ts',
+    'public/js/pages/backup-report-log',
+  )
+  .ts(
+    'resources/js/pages/backup-report-log/show.ts',
+    'public/js/pages/backup-report-log',
+  );
+
 const sourceMapIsGeneratedForProduction = false;
 
 mix

@@ -1,0 +1,59 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Enums\BackupReportStatus;
+use App\Models\BackupReportLog;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class BackupReportLogFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = BackupReportLog::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            //
+            'status' => BackupReportStatus::Success,
+            'detail' => json_encode([
+                'project_name' => $this->faker->name,
+                'computer_name' => 'My PC',
+                'ip' => '127.20.13.88',
+                'started_at' => '2021-03-11T02:13:00.016Z',
+                'finished_at' => '2021-03-11T02:13:00.299Z',
+                'db_name' => 'my_app_db',
+                'db_type' => 'PostgreSQL',
+                'file_path' => '\\var\\app\\backup-reporter\\runner\\storage\\My Project\\pg_backup_reporter\\2021-03-11_10-13-00.zip',
+                'file_size' => 10495
+            ])
+        ];
+    }
+
+    public function failed()
+    {
+        return $this->state(function (array $attr) {
+            return [
+                'status' => BackupReportStatus::Failed,
+                'detail' => json_encode([
+                    'project_name' => $this->faker->name,
+                    'computer_name' => 'My PC',
+                    'ip' => '127.20.13.88',
+                    'started_at' => '2021-03-11T02:13:00.016Z',
+                    'db_name' => 'my_app_db',
+                    'db_type' => 'PostgreSQL',
+                    'message' => 'Whoops something went wrong, yikes.'
+                ])
+            ];
+        });
+    }
+}

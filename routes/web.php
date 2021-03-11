@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccessTokenController;
+use App\Http\Controllers\BackupReportLogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -34,4 +35,5 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('/users', UserController::class)->except(['destroy']);
     Route::resource('/access-tokens', AccessTokenController::class)->except(['destroy']);
+    Route::resource('/backup-report-logs', BackupReportLogController::class)->only(['index', 'show']);
 });
