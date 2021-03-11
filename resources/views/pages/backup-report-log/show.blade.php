@@ -84,7 +84,7 @@
                     </x-base.inline-form-group>
 
                     <x-base.inline-form-group label="File Size">
-                        <div>{{ $backupReportLog->detail['file_size'] }}</div>
+                        <div>{{ $backupReportLog->getReadableFileSize() }}</div>
                     </x-base.inline-form-group>
                 </div>
             @else
