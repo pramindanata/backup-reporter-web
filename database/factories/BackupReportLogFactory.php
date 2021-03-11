@@ -30,7 +30,7 @@ class BackupReportLogFactory extends Factory
                 'computer_name' => 'My PC',
                 'ip' => $this->faker->ipv4,
                 'started_at' => '2021-03-11T02:13:00.016Z',
-                'finished_at' => '2021-03-11T02:13:00.299Z',
+                'finished_at' => '2021-03-11T02:13:25.299Z',
                 'db_name' => $this->faker->userName,
                 'db_type' => 'PostgreSQL',
                 'file_path' => '\\var\\app\\backup-reporter\\runner\\storage\\My Project\\pg_backup_reporter\\2021-03-11_10-13-00.zip',

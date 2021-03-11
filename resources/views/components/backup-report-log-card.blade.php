@@ -3,7 +3,7 @@
         <div class="d-flex w-100 justify-content-between align-items-center">
             <div class="card-title">
                 <a href="{{ route('backup-report-logs.show', ['backup_report_log' => $backupReportLog->id]) }}">
-                    {{ $backupReportLog->project_name }}
+                    Report #{{ $backupReportLog->id }}
                 </a>
             </div>
 
@@ -60,7 +60,7 @@
                         <path d="M4 12v6a8 3 0 0 0 16 0v-6"></path>
                     </svg>
                 </div>
-                <div>{{ $backupReportLog->db_name }}</div>
+                <div data-bs-toggle="tooltip" title="{{ $backupReportLog->project_name }}">{{ $backupReportLog->db_name }}</div>
             </div>
 
             <div class="col-xl-6 col-md-auto d-flex text-muted">
@@ -74,7 +74,13 @@
                         <path d="M12.5 3a17 17 0 0 1 0 18"></path>
                     </svg>
                 </div>
-                <div>{{ $backupReportLog->ip }}</div>
+                <div>
+                    <a
+                        href="http://{{ $backupReportLog->ip }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >{{ $backupReportLog->ip }}</a>
+                </div>
             </div>
 
             <div class="col-xl-6 col-md-auto d-flex text-muted">

@@ -33,5 +33,17 @@ class BackupReportLogController extends Controller
 
     public function show($id)
     {
+        $backupReportLog = $this->backupReportLogService->getDetail($id);
+
+        if (!$backupReportLog) {
+            abort(404);
+        }
+
+        // $this->authorize('view', $backupReportLog);
+
+        return view('pages.backup-report-log.show', [
+            'backupReportLog' => $backupReportLog,
+            'statusTextColor' => $backupReportLog->isSuccess() ? 'text-success' : 'text-danger',
+        ]);
     }
 }

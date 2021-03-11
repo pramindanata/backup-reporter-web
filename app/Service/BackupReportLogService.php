@@ -39,4 +39,12 @@ class BackupReportLogService
 
         return $paginator;
     }
+
+    public function getDetail($id): ?BackupReportLog
+    {
+        $log = BackupReportLog::where('id', $id)
+            ->first();
+
+        return $log;
+    }
 }
