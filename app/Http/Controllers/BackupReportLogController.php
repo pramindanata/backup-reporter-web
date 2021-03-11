@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BackupReportLogCatalog;
+use App\Models\BackupReportLog;
 use App\Service\BackupReportLogService;
 use Illuminate\Http\Request;
 
@@ -18,6 +19,8 @@ class BackupReportLogController extends Controller
 
     public function index(BackupReportLogCatalog $request)
     {
+        $this->authorize('viewAny', BackupReportLog::class);
+
         $filter = [
             'search' => $request->search ?? '',
             'order' => $request->order ?? 'created_at',
@@ -39,7 +42,7 @@ class BackupReportLogController extends Controller
             abort(404);
         }
 
-        // $this->authorize('view', $backupReportLog);
+        $this->authorize('view', $backupReportLog);
 
         return view('pages.backup-report-log.show', [
             'backupReportLog' => $backupReportLog,

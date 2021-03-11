@@ -10,7 +10,7 @@
                     <button
                         id="btn-confirm-delete"
                         class="btn btn-danger"
-                        data-url="{{ route('api.backup-report-logs.destroy', ['access_token' => $backupReportLog->id]) }}"
+                        data-url="{{ route('api.backup-report-logs.destroy', ['backup_report_log' => $backupReportLog->id]) }}"
                     >Delete</button>
                 </x-slot>
             @endcanany
@@ -32,7 +32,7 @@
 
                 <x-base.inline-form-group label="Status" class="mb-3">
                     <div class="{{ $statusTextColor }}">
-                        {{ $backupReportLog->status }}
+                        <div>{{ __("domain.backupReportLog.status.{$backupReportLog->status}") }}</div>
                     </div>
                 </x-base.inline-form-group>
 

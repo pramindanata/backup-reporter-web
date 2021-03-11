@@ -47,4 +47,9 @@ class BackupReportLogService
 
         return $log;
     }
+
+    public function delete(BackupReportLog $backupReportLog): ?bool
+    {
+        return $backupReportLog->delete();
+    }
 }

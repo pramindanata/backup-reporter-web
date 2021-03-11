@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\AccessTokenActivationStatus;
+use App\Enums\BackupReportStatus;
 use App\Enums\UserRole;
 
 return [
@@ -14,6 +15,12 @@ return [
         'activationStatus' => [
             AccessTokenActivationStatus::Activated => 'Activated',
             AccessTokenActivationStatus::NotActivated => 'Not Activated'
+        ]
+    ],
+    'backupReportLog' => [
+        'status' => [
+            BackupReportStatus::Success => 'Success',
+            BackupReportStatus::Failed => 'Failed',
         ]
     ]
 ];

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AccessTokenController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\BackupReportLogController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +19,5 @@ use Illuminate\Support\Facades\Route;
 Route::name('api.')->middleware(['auth'])->group(function () {
     Route::delete("/users/{user}", [UserController::class, 'destroy'])->name("users.destroy");
     Route::delete("/access-tokens/{access_token}", [AccessTokenController::class, 'destroy'])->name("access-tokens.destroy");
+    Route::delete("/backup-report-logs/{backup_report_log}", [BackupReportLogController::class, 'destroy'])->name("backup-report-logs.destroy");
 });

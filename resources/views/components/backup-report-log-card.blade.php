@@ -48,7 +48,7 @@
                     @endif
                 </div>
 
-                <div>{{ $backupReportLog->status }}</div>
+                <div>{{ __("domain.backupReportLog.status.{$backupReportLog->status}") }}</div>
             </div>
 
             <div class="col-xl-6 col-md-auto d-flex text-muted">
