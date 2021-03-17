@@ -63,8 +63,11 @@ class AccessTokenService
 
         try {
             $accessToken->delete();
-            TelegramAccount::where('id', $accessToken->telegramAccount->id)
-                ->delete();
+
+            if ($accessToken->telegramAccount) {
+                TelegramAccount::where('id', $accessToken->telegramAccount->id)
+                    ->delete();
+            }
 
             DB::commit();
         } catch (Exception $err) {
