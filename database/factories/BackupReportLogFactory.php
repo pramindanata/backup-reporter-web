@@ -25,7 +25,7 @@ class BackupReportLogFactory extends Factory
         return [
             //
             'status' => BackupReportStatus::Success,
-            'detail' => json_encode([
+            'detail' => [
                 'project_name' => $this->faker->name,
                 'computer_name' => 'My PC',
                 'ip' => $this->faker->ipv4,
@@ -35,7 +35,7 @@ class BackupReportLogFactory extends Factory
                 'db_type' => 'PostgreSQL',
                 'file_path' => '\\var\\app\\backup-reporter\\runner\\storage\\My Project\\pg_backup_reporter\\2021-03-11_10-13-00.zip',
                 'file_size' => 10495
-            ])
+            ]
         ];
     }
 
@@ -44,7 +44,7 @@ class BackupReportLogFactory extends Factory
         return $this->state(function (array $attr) {
             return [
                 'status' => BackupReportStatus::Failed,
-                'detail' => json_encode([
+                'detail' => [
                     'project_name' => $this->faker->name,
                     'computer_name' => 'My PC',
                     'ip' => $this->faker->ipv4,
@@ -52,7 +52,7 @@ class BackupReportLogFactory extends Factory
                     'db_name' => $this->faker->userName,
                     'db_type' => 'PostgreSQL',
                     'message' => 'Whoops something went wrong, yikes.'
-                ])
+                ]
             ];
         });
     }
